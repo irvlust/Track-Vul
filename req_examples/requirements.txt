@@ -1,0 +1,11 @@
+fastapi==0.103.0
+uvicorn>=0.23.0,<0.24.0
+python-dotenv
+requirements-parser==1.7.3
+python-multipart
+sqlalchemy[asyncio]
+asyncpg
+httpx
+aiocache
+pytest 
+pytest-asyncio
