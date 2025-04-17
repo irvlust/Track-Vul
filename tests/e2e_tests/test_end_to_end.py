@@ -61,7 +61,7 @@ async def test_e2e_dependency_detail(client):
     assert len(apps) == 1
     assert apps[0]["application_usage"] == ["TestApp"]
     assert apps[0]["version_specs"] == '==0.103.0'
-    assert "vulns" in apps[0]
+    assert "osv_vulns" in apps[0]
 
 
 

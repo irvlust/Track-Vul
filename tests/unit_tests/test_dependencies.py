@@ -42,7 +42,7 @@ async def test_list_all_unique_dependencies(mock_check_vulnerabilities, client):
 @pytest.mark.asyncio
 @patch("app.api.routes_applications.get_vulnerabilities", new_callable=AsyncMock)
 async def test_dependency_detail(mock_get_vulnerabilities, client):
-    mock_get_vulnerabilities.return_value = [{"blah": "blah"}]
+    mock_get_vulnerabilities.return_value = {"blah": "blah"}
 
     await create_app(client)
 
@@ -55,5 +55,5 @@ async def test_dependency_detail(mock_get_vulnerabilities, client):
     assert len(apps) == 1
     assert apps[0]["application_usage"] == ["TestApp"]
     assert apps[0]["version_specs"] == '==0.103.0'
-    assert apps[0]["vulns"] == [{'blah':'blah'}]
+    assert apps[0]["osv_vulns"] == {'blah':'blah'}
 

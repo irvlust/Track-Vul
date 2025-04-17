@@ -12,16 +12,15 @@ async def test_get_vulnerabilities_uncached_success(mock_client_class):
     mock_response.status_code = 200
     mock_response.raise_for_status.return_value = None
     mock_response.json.return_value = {
-        "vulns": [{"id": "OSV-2021-1234", "summary": "Sample vuln"}]
+        "vulns": {"id": "OSV-2021-1234", "summary": "Sample vuln"}
     }
 
     mock_client.post = AsyncMock(return_value=mock_response)
     mock_client_class.return_value.__aenter__.return_value = mock_client
 
     vulns = await _get_vulnerabilities_uncached("sample-package", "1.2.3")
-    assert isinstance(vulns, list)
-    assert len(vulns) == 1
-    assert vulns[0]["id"] == "OSV-2021-1234"
+    assert isinstance(vulns, dict)
+    assert vulns["vulns"]["id"] == "OSV-2021-1234"
 
 @pytest.mark.unit
 @pytest.mark.asyncio
