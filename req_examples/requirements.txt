@@ -1,7 +1,8 @@
 fastapi==0.103.0
-uvicorn>=0.23.0,<0.24.0
+uvicorn==0.11.0,>0.11.0
 python-dotenv
-requirements-parser==1.7.3
+requirements-parser==1.7.2
+# requirements-parser==1.7.3
 python-multipart
 sqlalchemy[asyncio]
 asyncpg

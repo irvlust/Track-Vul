@@ -23,3 +23,12 @@ class Dependency(Base):
 
     application_id = Column(Integer, ForeignKey("applications.id"))
     application = relationship("Application", back_populates="dependencies")
+
+# for test purposes
+class AllDependencies(Base):
+    __tablename__ = "alldependencies"
+    id = Column(Integer, primary_key=True, index=True)
+    application_name = Column(String, nullable=False)
+    dependency_name = Column(String, nullable=False)
+    version_specs = Column(String, nullable=True)
+    # extras = Column(String, nullable=True)

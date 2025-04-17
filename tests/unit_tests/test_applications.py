@@ -17,6 +17,21 @@ async def test_create_application(client):
     assert response.status_code == 200
     assert response.json()["name"] == "TestApp"
 
+
+@pytest.mark.unit
+@pytest.mark.asyncio
+async def test_create_application_parser(client):
+    files = {
+        "requirements": ("requirements.txt", b"fastapi==0.103.0\nfastapi==0.103.0\nuvicorn>=0.23.0,<0.24.0")
+    }
+    data = {
+        "name": "TestApp",
+        "description": "Test app with deps"
+    }
+
+    response = await client.post("/application", data=data, files=files)
+    assert response.status_code == 400
+
 @pytest.mark.unit
 @pytest.mark.asyncio
 @patch("app.api.routes_applications.check_vulnerabilities", new_callable=AsyncMock)
